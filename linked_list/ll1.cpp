@@ -29,6 +29,35 @@ void append(int value){
     }    
 }
 
+void insert(int position, int value){
+
+    int index = 1;
+
+    node* ptr = start;
+    node* temp = new node(value);
+
+    if(position == 1){
+
+        temp->next = ptr;
+        start = temp;
+        return;
+    }
+
+    while(ptr->next != nullptr){
+
+        if(index == position - 1)
+            break;
+
+        ptr = ptr->next;
+        index++;    
+    }
+
+    temp->next = ptr->next;
+
+    ptr->next = temp;
+
+}
+
 void print(){
 
     if(start == nullptr){
@@ -41,10 +70,26 @@ void print(){
 
         node* ptr = start;
 
-        while(ptr->next != nullptr)
+        while(ptr->next != nullptr){
             cout << ptr->data << " ";
+            ptr = ptr->next;
+            }
 
         cout << ptr->data << endl;    
     }
 }
+
+int main(){
+
+    for(int i = 0 ; i < 5; i++)
+        append(i);
+
+    print();    
+
+    insert(1, 44);    
+
+    print();
+}
+
+
 
