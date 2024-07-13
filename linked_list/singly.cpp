@@ -58,6 +58,43 @@ void insert(int position, int value){
 
 }
 
+void remove(int value){
+
+    if(start->data == value){
+
+        node* temp = start;
+        start = start->next;
+        delete temp;
+        return;
+    }
+
+    else if(start->data != value && start->next == nullptr){
+
+        cout << "Not found !!!" << endl;
+        return;
+    }
+
+    node* trav1 = start;
+    node* trav2 = start->next;
+
+    while(trav2->data != value){
+
+        trav1 = trav2;
+        trav2 = trav2->next;
+
+        if(trav2 == nullptr){
+
+        cout << "Not found !!!" << endl;
+        return;
+        }
+    }
+
+    node* temp = trav2;
+    trav1->next = trav2->next;
+    delete temp;
+
+}
+
 void print(){
 
     if(start == nullptr){
@@ -86,7 +123,7 @@ int main(){
 
     print();    
 
-    insert(1, 44);    
+    remove(44);    
 
     print();
 }
